@@ -1,12 +1,13 @@
-import { extendTheme, UsageTheme } from "@yamada-ui/react"
-// import { styles } from './styles'
-// import { components } from './components'
-// import { tokens } from './tokens'
+import {
+  extendConfig,
+  extendTheme,
+  ThemeConfig,
+  UsageTheme,
+} from "@yamada-ui/react";
 
-const customTheme: UsageTheme = {
-  // styles,
-  // components,
-  // ...tokens,
-}
+const customTheme: UsageTheme = {};
 
-export const theme = extendTheme(customTheme)()
+const customConfig: ThemeConfig = { initialColorMode: "dark" };
+
+export const config = extendConfig(customConfig);
+export const theme = extendTheme(customTheme)();

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ColorModeScript, UIProvider } from "@yamada-ui/react";
-import { theme } from "@/themes";
+import { config, theme } from "@/themes";
 
 export const metadata: Metadata = {
   title: "pf-movie",
@@ -18,7 +18,7 @@ export default function RootLayout({
       <body>
         <ColorModeScript />
 
-        <UIProvider theme={theme}>{children}</UIProvider>
+        <UIProvider theme={theme} config={config}>{children}</UIProvider>
       </body>
     </html>
   );
