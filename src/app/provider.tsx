@@ -1,6 +1,7 @@
+"use client";
+
 import { config, theme } from "@/themes";
 import { ColorModeScript, UIProvider } from "@yamada-ui/react";
-import React from "react";
 
 type HomeProviderProps = {
   children: React.ReactNode;
@@ -9,8 +10,8 @@ type HomeProviderProps = {
 const HomeProvider = ({ children }: HomeProviderProps) => {
   return (
     <>
-      <ColorModeScript />
-      <UIProvider theme={theme} config={config}>
+      <ColorModeScript  />
+      <UIProvider theme={theme} config={config} >
         {children}
       </UIProvider>
     </>
