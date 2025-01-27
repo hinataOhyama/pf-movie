@@ -10,7 +10,7 @@ type CardProps = {
 
 const Card = ({ result }: CardProps) => {
   return (
-    <Link href={`/`}>
+    <Link href={`/${result?.media_type}/${result?.id}`}>
       <Box
         position={"relative"}
         transform={"scale(1)"}
