@@ -26,6 +26,8 @@ const TrendingSchema = z.object({
 });
 
 type TrendingResponse = z.infer<typeof TrendingSchema>;
+type TrendingResults = TrendingResponse["results"];
+type TrendingResult = TrendingResults[number];
 
 type TimeWindow = "day" | "week";
 
@@ -34,5 +36,7 @@ export {
 }
 export type {
   TrendingResponse,
+  TrendingResults,
+  TrendingResult,
   TimeWindow,
 }
