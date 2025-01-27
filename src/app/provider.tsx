@@ -10,8 +10,8 @@ type HomeProviderProps = {
 const HomeProvider = ({ children }: HomeProviderProps) => {
   return (
     <>
-      <ColorModeScript  />
-      <UIProvider theme={theme} config={config} >
+      <ColorModeScript initialColorMode={config.initialColorMode} />
+      <UIProvider theme={theme} config={config}>
         {children}
       </UIProvider>
     </>

@@ -13,18 +13,18 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   return (
-    <Box py="4" mb="2">
-      <Container maxW={"container.xl"}>
-        <Flex justifyContent={"space-between"}>
+    <Box as={"header"} py="4" mb="2" boxShadow={"md"}>
+      <Container maxW={"6xl"} mx={"auto"} py={"0"} px={"4"}>
+        <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Link href={"/"}>
             <Box
               fontSize={"2xl"}
               fontWeight={"bold"}
-              color={"red"}
+              color={"blue.400"}
               letterSpacing={"widest"}
               fontFamily={"mono"}
             >
-              PF Movie
+              PF-Movie
             </Box>
           </Link>
 
@@ -32,7 +32,7 @@ const Navbar = () => {
           <Flex
             gap="4"
             alignItems={"center"}
-            display={{ base: "none", md: "flex" }}
+            display={{ base: "flex", md: "none" }}
           >
             <Link href="/">Home</Link>
             <Link href="/movies">Movies</Link>
@@ -44,7 +44,7 @@ const Navbar = () => {
 
           {/* Mobile */}
           <Flex
-            display={{ base: "flex", md: "none" }}
+            display={{ base: "none", md: "flex" }}
             alignItems={"center"}
             gap="4"
           >
