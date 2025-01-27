@@ -51,6 +51,7 @@ const DetailsPresentation = ({detailsData, params}: DetailsPresentationProps) =>
         py={"2"}
         zIndex={"-1"}
         display={"flex"}
+        justifyContent={"center"}
         alignItems={"center"}
       >
         <Container maxW={"6xl"}>
