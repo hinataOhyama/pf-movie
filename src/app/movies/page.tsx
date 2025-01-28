@@ -1,9 +1,9 @@
-import React from 'react'
+import MoviesContainer from "@/_app/movies/container";
 
 const MoviesPage = () => {
   return (
-    <div>MoviesPage</div>
-  )
-}
+   <MoviesContainer />
+  );
+};
 
-export default MoviesPage
+export default MoviesPage;

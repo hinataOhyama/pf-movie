@@ -1,11 +1,17 @@
+"use client";
+
 import { TMDBImagePath } from "@/services/tmdb/const";
-import { TrendingResult } from "@/services/tmdb/schema";
+import {
+  MovieDiscoverResult,
+  TrendingResult,
+  TVDiscoverResult,
+} from "@/services/tmdb/schema";
 import { Box, Flex, Icon, Image, Text } from "@yamada-ui/react";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 type CardProps = {
-  result: TrendingResult;
+  result: TrendingResult & MovieDiscoverResult & TVDiscoverResult;
 };
 
 const Card = ({ result }: CardProps) => {
@@ -25,7 +31,7 @@ const Card = ({ result }: CardProps) => {
       >
         <Image
           src={`${TMDBImagePath}/${result?.poster_path}`}
-          alt={result?.title}
+          alt={result?.title || result?.name}
           w={"full"}
         />
         <Box
@@ -40,9 +46,11 @@ const Card = ({ result }: CardProps) => {
           opacity={"0"}
           transition={"opacity 0.3s ease-in-out"}
         >
-          <Text textAlign={"center"}>{result?.title}</Text>
+          <Text textAlign={"center"}>{result?.title || result?.name}</Text>
           <Text textAlign={"center"} fontSize={"small"} color={"green.300"}>
-            {new Date(result?.release_date).getFullYear() || "N/A"}
+            {new Date(
+              result?.release_date || result?.first_air_date
+            ).getFullYear() || "N/A"}
           </Text>
           <Flex alignItems={"center"} justifyContent={"center"} gap={2} mt="4">
             <Icon as={FaStar} fontSize={"small"} />
