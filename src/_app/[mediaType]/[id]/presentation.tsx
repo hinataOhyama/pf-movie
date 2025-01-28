@@ -13,31 +13,34 @@ import {
   Image,
   Text,
 } from "@yamada-ui/react";
-import {
-  TMDBImagePath,
-  TMDBImageOriginalPath,
-} from "@/services/tmdb/const";
+import { TMDBImagePath, TMDBImageOriginalPath } from "@/services/tmdb/const";
 
 import {
   minutesTohours,
   ratingToPercentage,
   resolveRatingColor,
 } from "@/utils/helpers";
-import { DetailResponse } from "@/services/tmdb/schema";
+import { CreditResponse, DetailResponse } from "@/services/tmdb/schema";
 import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 import { FaCalendar, FaTimes, FaCheckCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
 
 type DetailsPresentationProps = {
   detailsData: DetailResponse;
+  creditsData: CreditResponse;
   params: DetailsPageParams["params"];
 };
 
-const DetailsPresentation = ({detailsData, params}: DetailsPresentationProps) => {
-
+const DetailsPresentation = ({
+  detailsData,
+  creditsData,
+  params,
+}: DetailsPresentationProps) => {
   const title = detailsData?.title || detailsData?.name;
   const releaseDate =
-    params?.mediaType === "tv" ? detailsData?.first_air_date : detailsData?.release_date;
+    params?.mediaType === "tv"
+      ? detailsData?.first_air_date
+      : detailsData?.release_date;
 
   return (
     <Box>
@@ -122,10 +125,7 @@ const DetailsPresentation = ({detailsData, params}: DetailsPresentationProps) =>
                     In watchlist
                   </Button>
                 ) : (
-                  <Button
-                    startIcon={<CgAdd />}
-                    variant={"outline"}
-                  >
+                  <Button startIcon={<CgAdd />} variant={"outline"}>
                     Add to watchlist
                   </Button>
                 )}
@@ -155,8 +155,30 @@ const DetailsPresentation = ({detailsData, params}: DetailsPresentationProps) =>
           </Flex>
         </Container>
       </Box>
+
+      <Container maxW={"6xl"} pb="10" mx={"auto"}>
+        <Heading as="h2" fontSize={"md"} textTransform={"uppercase"} mt="10">
+          Cast
+        </Heading>
+        <Flex mt="5" mb="10" overflowX={"scroll"} gap={"5"}>
+          {creditsData?.cast.length === 0 && <Text>No cast found</Text>}
+          {creditsData?.cast &&
+            creditsData?.cast?.map((castItem) => (
+              <Box key={castItem?.id} minW={"150px"}>
+                <Image
+                  src={`${TMDBImagePath}/${castItem?.profile_path}`}
+                  alt={castItem?.name}
+                  w={"100%"}
+                  height={"225px"}
+                  objectFit={"cover"}
+                  borderRadius={"sm"}
+                />
+              </Box>
+            ))}
+        </Flex>
+      </Container>
     </Box>
   );
-}
+};
 
-export default DetailsPresentation
+export default DetailsPresentation;

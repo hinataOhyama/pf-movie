@@ -68,6 +68,8 @@ const TVDetailSchema = z.object({
     show_id: z.number().default(0),
     still_path: z.string(),
   }),
+  name: z.string(),
+  next_episode_to_air: z.string(),
   networks: z.array(
     z.object({
       id: z.number().default(0),
@@ -175,30 +177,91 @@ const MovieDetailSchema = z.object({
   vote_count: z.number().default(0),
 });
 
-const PersonDetailSchema = z.object({
-  adult: z.boolean().default(true),
-  also_known_as: z.array(z.string()),
-  biography: z.string(),
-  birthday: z.string(),
-  deathday: z.string(),
-  gender: z.number().default(0),
-  homepage: z.string(),
-  id: z.number().default(0),
-  imdb_id: z.string(),
-  known_for_department: z.string(),
-  name: z.string(),
-  place_of_birth: z.string(),
-  popularity: z.number().default(0),
-  profile_path: z.string(),
-});
-
 type TVDetailResponse = z.infer<typeof TVDetailSchema>;
 type MovieDetailResponse = z.infer<typeof MovieDetailSchema>;
-type PersonDetailResponse = z.infer<typeof PersonDetailSchema>;
-type DetailResponse = TVDetailResponse & MovieDetailResponse & PersonDetailResponse;
-type MediaType = "movie" | "tv" | "person";
+type DetailResponse = TVDetailResponse & MovieDetailResponse;
+type MediaType = "movie" | "tv";
 
-export { TrendingSchema, TVDetailSchema, MovieDetailSchema, PersonDetailSchema };
+const MovieCreditSchema = z.object({
+  id: z.number().default(0),
+  cast: z.array(
+    z.object({
+      adult: z.boolean().default(true),
+      gender: z.number().default(0),
+      id: z.number().default(0),
+      known_for_department: z.string(),
+      name: z.string(),
+      original_name: z.string(),
+      popularity: z.number().default(0),
+      profile_path: z.string(),
+      cast_id: z.number().default(0),
+      character: z.string(),
+      credit_id: z.string(),
+      order: z.number().default(0),
+    })
+  ),
+  crew: z.array(
+    z.object({
+      adult: z.boolean().default(true),
+      gender: z.number().default(0),
+      id: z.number().default(0),
+      known_for_department: z.string(),
+      name: z.string(),
+      original_name: z.string(),
+      popularity: z.number().default(0),
+      profile_path: z.string(),
+      credit_id: z.string(),
+      department: z.string(),
+      job: z.string(),
+    })
+  ),
+});
+
+const TVCreditSchema = z.object({
+  cast: z.array(
+    z.object({
+      adult: z.boolean().default(true),
+      gender: z.number().default(0),
+      id: z.number().default(0),
+      known_for_department: z.string(),
+      name: z.string(),
+      original_name: z.string(),
+      popularity: z.number().default(0),
+      profile_path: z.string(),
+      character: z.string(),
+      credit_id: z.string(),
+      order: z.number().default(0),
+    })
+  ),
+  crew: z.array(
+    z.object({
+      adult: z.boolean().default(true),
+      gender: z.number().default(0),
+      id: z.number().default(0),
+      known_for_department: z.string(),
+      name: z.string(),
+      original_name: z.string(),
+      popularity: z.number().default(0),
+      profile_path: z.string(),
+      credit_id: z.string(),
+      department: z.string(),
+      job: z.string(),
+    })
+  ),
+  id: z.number().default(0),
+});
+
+type MovieCreditResponse = z.infer<typeof MovieCreditSchema>;
+type TVCreditResponse = z.infer<typeof TVCreditSchema>;
+type CreditResponse = MovieCreditResponse & TVCreditResponse;
+
+export {
+  TrendingSchema,
+  TVDetailSchema,
+  MovieDetailSchema,
+  MovieCreditSchema,
+  TVCreditSchema,
+};
 export type {
   TrendingResponse,
   TrendingResults,
@@ -208,4 +271,7 @@ export type {
   MovieDetailResponse,
   DetailResponse,
   MediaType,
+  MovieCreditResponse,
+  TVCreditResponse,
+  CreditResponse,
 };
