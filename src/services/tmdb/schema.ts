@@ -295,14 +295,59 @@ type MovieVideoResponse = z.infer<typeof MovieVideoSchema>;
 type TVVideoResponse = z.infer<typeof TVVideoSchema>;
 type VideoResponse = MovieVideoResponse & TVVideoResponse;
 
+const MovieDiscoverSchema = z.object({
+  page: z.number().default(0),
+  results: z.array(
+    z.object({
+      adult: z.boolean().default(true),
+      backdrop_path: z.string(),
+      genre_ids: z.array(z.number()),
+      id: z.number().default(0),
+      original_language: z.string(),
+      original_title: z.string(),
+      overview: z.string(),
+      popularity: z.number().default(0),
+      poster_path: z.string(),
+      release_date: z.string(),
+      title: z.string(),
+      video: z.boolean().default(true),
+      vote_average: z.number().default(0),
+      vote_count: z.number().default(0),
+    })
+  ),
+  total_pages: z.number().default(0),
+  total_results: z.number().default(0),
+});
+
+type MovieDiscoverResponse = z.infer<typeof MovieDiscoverSchema>;
+type MovieDiscoverResults = MovieDiscoverResponse["results"];
+type MovieDiscoverResult = MovieDiscoverResults[number];
+
+type SortBy =
+  | "original_title.asc"
+  | "original_title.desc"
+  | "popularity.asc"
+  | "popularity.desc"
+  | "revenue.asc"
+  | "revenue.desc"
+  | "primary_release_date.asc"
+  | "primary_release_date.desc"
+  | "title.asc"
+  | "title.desc"
+  | "vote_average.asc"
+  | "vote_average.desc"
+  | "vote_count.asc"
+  | "vote_count.desc";
+
 export {
   TrendingSchema,
-  TVDetailSchema,
   MovieDetailSchema,
+  TVDetailSchema,
   MovieCreditSchema,
   TVCreditSchema,
   MovieVideoSchema,
   TVVideoSchema,
+  MovieDiscoverSchema,
 };
 export type {
   TrendingResponse,
@@ -319,4 +364,8 @@ export type {
   MovieVideoResponse,
   TVVideoResponse,
   VideoResponse,
+  MovieDiscoverResponse,
+  MovieDiscoverResults,
+  MovieDiscoverResult,
+  SortBy,
 };

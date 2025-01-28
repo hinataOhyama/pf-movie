@@ -1,6 +1,15 @@
 "use server";
 
-import { CreditResponse, DetailResponse, MediaType, TimeWindow, TrendingResponse, VideoResponse } from "./schema";
+import {
+  CreditResponse,
+  DetailResponse,
+  MediaType,
+  MovieDiscoverResponse,
+  SortBy,
+  TimeWindow,
+  TrendingResponse,
+  VideoResponse,
+} from "./schema";
 
 const TMDBBaseUrl = "https://api.themoviedb.org/3";
 const TMDBApiKey = process.env.TMDB_API_KEY;
@@ -27,7 +36,10 @@ export const fetchTrending = async (
  * @see https://developer.themoviedb.org/reference/movie-details
  * @see https://developer.themoviedb.org/reference/tv-series-details
  */
-export const fetchDetails = async (mediaType: MediaType = "tv", id: number): Promise<DetailResponse> => {
+export const fetchDetails = async (
+  mediaType: MediaType = "tv",
+  id: number
+): Promise<DetailResponse> => {
   const url = `${TMDBBaseUrl}/${mediaType}/${id}?api_key=${TMDBApiKey}`;
   const detailsResponse = await fetch(url)
     .then((res) => res.json())
@@ -43,7 +55,10 @@ export const fetchDetails = async (mediaType: MediaType = "tv", id: number): Pro
  * @see https://developer.themoviedb.org/reference/movie-credits
  * @see https://developer.themoviedb.org/reference/tv-series-credits
  */
-export const fetchCredits = async (mediaType: MediaType = "tv", id: number): Promise<CreditResponse> => {
+export const fetchCredits = async (
+  mediaType: MediaType = "tv",
+  id: number
+): Promise<CreditResponse> => {
   const url = `${TMDBBaseUrl}/${mediaType}/${id}/credits?api_key=${TMDBApiKey}`;
   const creditsResponse = await fetch(url)
     .then((res) => res.json())
@@ -59,7 +74,10 @@ export const fetchCredits = async (mediaType: MediaType = "tv", id: number): Pro
  * @see https://developer.themoviedb.org/reference/movie-credits
  * @see https://developer.themoviedb.org/reference/tv-series-videos
  */
-export const fetchVideos = async (mediaType: MediaType = "tv", id: number): Promise<VideoResponse> => {
+export const fetchVideos = async (
+  mediaType: MediaType = "tv",
+  id: number
+): Promise<VideoResponse> => {
   const url = `${TMDBBaseUrl}/${mediaType}/${id}/videos?api_key=${TMDBApiKey}`;
   const videosResponse = await fetch(url)
     .then((res) => res.json())
@@ -69,4 +87,22 @@ export const fetchVideos = async (mediaType: MediaType = "tv", id: number): Prom
     });
 
   return videosResponse;
+};
+
+/**
+ * @see https://developer.themoviedb.org/reference/discover-movie
+ */
+export const fetchMovies = async (
+  page: number = 1,
+  sortBy: SortBy = "popularity.desc"
+): Promise<MovieDiscoverResponse> => {
+  const url = `${TMDBBaseUrl}/discover/movie?api_key=${TMDBApiKey}&page=${page}&sort_by=${sortBy}`;
+  const moviesResponse = await fetch(url)
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error("Error fetching movies", err);
+      return null;
+    });
+
+  return moviesResponse;
 };

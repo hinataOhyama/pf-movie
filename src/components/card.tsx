@@ -1,11 +1,13 @@
+"use client";
+
 import { TMDBImagePath } from "@/services/tmdb/const";
-import { TrendingResult } from "@/services/tmdb/schema";
+import { MovieDiscoverResult, TrendingResult } from "@/services/tmdb/schema";
 import { Box, Flex, Icon, Image, Text } from "@yamada-ui/react";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 
 type CardProps = {
-  result: TrendingResult;
+  result: TrendingResult & MovieDiscoverResult;
 };
 
 const Card = ({ result }: CardProps) => {

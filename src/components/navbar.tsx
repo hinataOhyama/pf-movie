@@ -36,7 +36,7 @@ const Navbar = () => {
           >
             <Link href="/">Home</Link>
             <Link href="/movies">Movies</Link>
-            <Link href="/shows">TV Shows</Link>
+            <Link href="/tv">TV</Link>
             <Link href="/search">
               <Icon as={FaSearch} fontSize={"xl"} />
             </Link>
