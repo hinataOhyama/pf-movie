@@ -8,6 +8,7 @@ import {
   SortBy,
   TimeWindow,
   TrendingResponse,
+  TVDiscoverResponse,
   VideoResponse,
 } from "./schema";
 
@@ -105,4 +106,22 @@ export const fetchMovies = async (
     });
 
   return moviesResponse;
+};
+
+/**
+ * @see https://developer.themoviedb.org/reference/discover-tv
+ */
+export const fetchTV = async (
+  page: number = 1,
+  sortBy: SortBy = "popularity.desc"
+): Promise<TVDiscoverResponse> => {
+  const url = `${TMDBBaseUrl}/discover/tv?api_key=${TMDBApiKey}&page=${page}&sort_by=${sortBy}`;
+  const tvResponse = await fetch(url)
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error("Error fetching movies", err);
+      return null;
+    });
+
+  return tvResponse;
 };

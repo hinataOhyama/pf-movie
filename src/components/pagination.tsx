@@ -7,14 +7,14 @@ type PaginationProps = {
   activePage: number;
   totalPages: number;
   setActivePage: (page: number) => void;
-  _setMoviesData: () => void;
+  _setData: () => void;
 };
 
 const Pagination = ({
   activePage,
   totalPages,
   setActivePage,
-  _setMoviesData,
+  _setData,
 }: PaginationProps) => {
   return (
     <Flex gap={"2"} alignItems={"center"}>
@@ -22,7 +22,7 @@ const Pagination = ({
         <Button
           onClick={() => {
             setActivePage(activePage - 1);
-            startTransition(() => _setMoviesData());
+            startTransition(() => _setData());
           }}
           disabled={activePage === 1}
         >
@@ -31,7 +31,7 @@ const Pagination = ({
         <Button
           onClick={() => {
             setActivePage(activePage + 1);
-            startTransition(() => _setMoviesData());
+            startTransition(() => _setData());
           }}
           disabled={activePage === totalPages}
         >

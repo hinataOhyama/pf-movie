@@ -2,11 +2,11 @@
 
 import Card from "@/components/card";
 import Pagination from "@/components/pagination";
-import { fetchMovies } from "@/services/tmdb/api";
+import { fetchTV } from "@/services/tmdb/api";
 import {
-  MovieDiscoverResponse,
-  MovieDiscoverResult,
   SortBy,
+  TVDiscoverResponse,
+  TVDiscoverResult,
 } from "@/services/tmdb/schema";
 import {
   Container,
@@ -19,17 +19,17 @@ import {
 } from "@yamada-ui/react";
 import { startTransition, useActionState, useState } from "react";
 
-type MoviesPresentationProps = {
-  moviesData: MovieDiscoverResponse;
+type TVPresentationProps = {
+  tvData: TVDiscoverResponse;
 };
 
-const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
+const TVPresentation = ({ tvData }: TVPresentationProps) => {
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [sortBy, setSortBy] = useState<SortBy>("popularity.desc");
-  const [_moviesData, _setMoviesData, isPending] = useActionState(
+  const [_tvData, _setTVData, isPending] = useActionState(
     () =>
-      fetchMovies(activePage, sortBy)
+      fetchTV(activePage, sortBy)
         .then((res) => {
           setTotalPages(res.total_pages);
           return res;
@@ -39,7 +39,7 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
           return null;
         })
         .finally(() => {}),
-    moviesData
+    tvData
   );
 
   return (
@@ -55,7 +55,7 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
           onChange={(value) => {
             setActivePage(1);
             setSortBy(value as SortBy);
-            startTransition(() => _setMoviesData());
+            startTransition(() => _setTVData());
           }}
         >
           <Option value="popularity.desc">Popular</Option>
@@ -73,8 +73,8 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
         }}
         gap={"4"}
       >
-        {_moviesData &&
-          _moviesData?.results.map((result: MovieDiscoverResult, i) =>
+        {_tvData &&
+          _tvData?.results.map((result: TVDiscoverResult, i) =>
             isPending ? (
               <Skeleton height={300} key={i} />
             ) : (
@@ -82,11 +82,12 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
                 key={result.id}
                 result={{
                   ...result,
-                  media_type: "movie",
-                  name: "",
-                  first_air_date: "",
-                  origin_country: [],
-                  original_name: ""
+                  media_type: "tv",
+                  title: result.name,
+                  original_title: result.original_name,
+                  release_date: result.first_air_date,
+                  video: false,
+                  adult: false,
                 }}
               />
             )
@@ -97,10 +98,10 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
         activePage={activePage}
         totalPages={totalPages}
         setActivePage={setActivePage}
-        _setData={_setMoviesData}
+        _setData={_setTVData}
       />
     </Container>
   );
 };
 
-export default MoviesPresentation;
+export default TVPresentation;

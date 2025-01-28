@@ -319,9 +319,35 @@ const MovieDiscoverSchema = z.object({
   total_results: z.number().default(0),
 });
 
+const TVDiscoverSchema = z.object({
+  page: z.number().default(0),
+  results: z.array(
+    z.object({
+      backdrop_path: z.string(),
+      first_air_date: z.string(),
+      genre_ids: z.array(z.number()),
+      id: z.number().default(0),
+      name: z.string(),
+      origin_country: z.array(z.string()),
+      original_language: z.string(),
+      original_name: z.string(),
+      overview: z.string(),
+      popularity: z.number().default(0),
+      poster_path: z.string(),
+      vote_average: z.number().default(0),
+      vote_count: z.number().default(0),
+    })
+  ),
+  total_pages: z.number().default(0),
+  total_results: z.number().default(0),
+});
+
 type MovieDiscoverResponse = z.infer<typeof MovieDiscoverSchema>;
 type MovieDiscoverResults = MovieDiscoverResponse["results"];
 type MovieDiscoverResult = MovieDiscoverResults[number];
+type TVDiscoverResponse = z.infer<typeof TVDiscoverSchema>;
+type TVDiscoverResults = TVDiscoverResponse["results"];
+type TVDiscoverResult = TVDiscoverResults[number];
 
 type SortBy =
   | "original_title.asc"
@@ -348,6 +374,7 @@ export {
   MovieVideoSchema,
   TVVideoSchema,
   MovieDiscoverSchema,
+  TVDiscoverSchema,
 };
 export type {
   TrendingResponse,
@@ -367,5 +394,8 @@ export type {
   MovieDiscoverResponse,
   MovieDiscoverResults,
   MovieDiscoverResult,
+  TVDiscoverResponse,
+  TVDiscoverResults,
+  TVDiscoverResult,
   SortBy,
 };

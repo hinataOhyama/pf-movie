@@ -1,9 +1,7 @@
-import React from 'react'
+import TVContainer from "@/_app/tv/container";
 
-const ShowsPage = () => {
-  return (
-    <div>ShowsPage</div>
-  )
-}
+const TVPage = () => {
+  return <TVContainer />;
+};
 
-export default ShowsPage
+export default TVPage;

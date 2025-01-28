@@ -87,7 +87,15 @@ const HomePresentation = ({ trendingData }: HomePresentationProps) => {
               fallback={<Skeleton w={"full"} height={300} key={_result?.id} />}
               key={_result?.id}
             >
-              <Card result={_result} />
+              <Card
+                result={{
+                  ..._result,
+                  first_air_date: "",
+                  name: _result.title || "",
+                  origin_country: [],
+                  original_name: _result.original_title || "",
+                }}
+              />
             </Suspense>
           ))}
       </Grid>
