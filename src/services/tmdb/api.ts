@@ -1,6 +1,6 @@
 "use server";
 
-import { DetailResponse, MediaType, TimeWindow, TrendingResponse } from "./schema";
+import { CreditResponse, DetailResponse, MediaType, TimeWindow, TrendingResponse } from "./schema";
 
 const TMDBBaseUrl = "https://api.themoviedb.org/3";
 const TMDBApiKey = process.env.TMDB_API_KEY;
@@ -29,6 +29,22 @@ export const fetchTrending = async (
  */
 export const fetchDetails = async (mediaType: MediaType = "tv", id: number): Promise<DetailResponse> => {
   const url = `${TMDBBaseUrl}/${mediaType}/${id}?api_key=${TMDBApiKey}`;
+  const detailsResponse = await fetch(url)
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error("Error fetching trending", err);
+      return null;
+    });
+
+  return detailsResponse;
+};
+
+/**
+ * @see https://developer.themoviedb.org/reference/movie-credits
+ * @see https://developer.themoviedb.org/reference/tv-series-credits
+ */
+export const fetchCredits = async (mediaType: MediaType = "tv", id: number): Promise<CreditResponse> => {
+  const url = `${TMDBBaseUrl}/${mediaType}/${id}/credits?api_key=${TMDBApiKey}`;
   const detailsResponse = await fetch(url)
     .then((res) => res.json())
     .catch((err) => {
