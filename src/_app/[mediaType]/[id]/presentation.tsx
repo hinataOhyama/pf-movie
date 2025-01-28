@@ -20,20 +20,23 @@ import {
   ratingToPercentage,
   resolveRatingColor,
 } from "@/utils/helpers";
-import { CreditResponse, DetailResponse } from "@/services/tmdb/schema";
+import { CreditResponse, DetailResponse, VideoResponse } from "@/services/tmdb/schema";
 import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 import { FaCalendar, FaTimes, FaCheckCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
+import Video from "@/components/video";
 
 type DetailsPresentationProps = {
   detailsData: DetailResponse;
   creditsData: CreditResponse;
+  videosData: VideoResponse;
   params: DetailsPageParams["params"];
 };
 
 const DetailsPresentation = ({
   detailsData,
   creditsData,
+  videosData,
   params,
 }: DetailsPresentationProps) => {
   const title = detailsData?.title || detailsData?.name;
@@ -173,6 +176,28 @@ const DetailsPresentation = ({
                   objectFit={"cover"}
                   borderRadius={"sm"}
                 />
+              </Box>
+            ))}
+        </Flex>
+
+        <Heading
+          as="h2"
+          fontSize={"md"}
+          textTransform={"uppercase"}
+          mt="10"
+          mb="5"
+        >
+          Videos
+        </Heading>
+        <Video id={videosData?.results[0]?.key} />
+        <Flex mt="5" mb="10" overflowX={"scroll"} gap={"5"}>
+          {videosData &&
+            videosData?.results.map((videoItem) => (
+              <Box key={videoItem?.id} minW={"290px"}>
+                <Video id={videoItem?.key} small />
+                <Text fontSize={"sm"} fontWeight={"bold"} mt="2" lineClamp={2}>
+                  {videoItem?.name}{" "}
+                </Text>
               </Box>
             ))}
         </Flex>

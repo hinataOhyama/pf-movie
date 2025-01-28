@@ -255,12 +255,54 @@ type MovieCreditResponse = z.infer<typeof MovieCreditSchema>;
 type TVCreditResponse = z.infer<typeof TVCreditSchema>;
 type CreditResponse = MovieCreditResponse & TVCreditResponse;
 
+const MovieVideoSchema = z.object({
+  id: z.number().default(0),
+  results: z.array(
+    z.object({
+      iso_639_1: z.string(),
+      iso_3166_1: z.string(),
+      name: z.string(),
+      key: z.string(),
+      site: z.string(),
+      size: z.number().default(0),
+      type: z.string(),
+      official: z.boolean().default(true),
+      published_at: z.string(),
+      id: z.string(),
+    })
+  ),
+});
+
+const TVVideoSchema = z.object({
+  id: z.number().default(0),
+  results: z.array(
+    z.object({
+      iso_639_1: z.string(),
+      iso_3166_1: z.string(),
+      name: z.string(),
+      key: z.string(),
+      site: z.string(),
+      size: z.number().default(0),
+      type: z.string(),
+      official: z.boolean().default(true),
+      published_at: z.string(),
+      id: z.string(),
+    })
+  ),
+});
+
+type MovieVideoResponse = z.infer<typeof MovieVideoSchema>;
+type TVVideoResponse = z.infer<typeof TVVideoSchema>;
+type VideoResponse = MovieVideoResponse & TVVideoResponse;
+
 export {
   TrendingSchema,
   TVDetailSchema,
   MovieDetailSchema,
   MovieCreditSchema,
   TVCreditSchema,
+  MovieVideoSchema,
+  TVVideoSchema,
 };
 export type {
   TrendingResponse,
@@ -274,4 +316,7 @@ export type {
   MovieCreditResponse,
   TVCreditResponse,
   CreditResponse,
+  MovieVideoResponse,
+  TVVideoResponse,
+  VideoResponse,
 };
