@@ -365,6 +365,33 @@ type SortBy =
   | "vote_count.asc"
   | "vote_count.desc";
 
+const SearchMultiSchema = z.object({
+  page: z.number().default(0),
+  results: z.array(
+    z.object({
+      adult: z.boolean().default(true),
+      backdrop_path: z.string(),
+      id: z.number().default(0),
+      title: z.string(),
+      original_language: z.string(),
+      original_title: z.string(),
+      overview: z.string(),
+      poster_path: z.string(),
+      media_type: z.string(),
+      genre_ids: z.array(z.number()),
+      popularity: z.number().default(0),
+      release_date: z.string(),
+      video: z.boolean().default(true),
+      vote_average: z.number().default(0),
+      vote_count: z.number().default(0),
+    })
+  ),
+  total_pages: z.number().default(0),
+  total_results: z.number().default(0),
+});
+
+type SearchMultiResponse = z.infer<typeof SearchMultiSchema>;
+
 export {
   TrendingSchema,
   MovieDetailSchema,
@@ -375,6 +402,7 @@ export {
   TVVideoSchema,
   MovieDiscoverSchema,
   TVDiscoverSchema,
+  SearchMultiSchema,
 };
 export type {
   TrendingResponse,
@@ -398,4 +426,5 @@ export type {
   TVDiscoverResults,
   TVDiscoverResult,
   SortBy,
+  SearchMultiResponse,
 };

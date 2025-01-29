@@ -5,6 +5,7 @@ import {
   DetailResponse,
   MediaType,
   MovieDiscoverResponse,
+  SearchMultiResponse,
   SortBy,
   TimeWindow,
   TrendingResponse,
@@ -45,7 +46,7 @@ export const fetchDetails = async (
   const detailsResponse = await fetch(url)
     .then((res) => res.json())
     .catch((err) => {
-      console.error("Error fetching trending", err);
+      console.error("Error fetching details", err);
       return null;
     });
 
@@ -64,7 +65,7 @@ export const fetchCredits = async (
   const creditsResponse = await fetch(url)
     .then((res) => res.json())
     .catch((err) => {
-      console.error("Error fetching trending", err);
+      console.error("Error fetching credits", err);
       return null;
     });
 
@@ -83,7 +84,7 @@ export const fetchVideos = async (
   const videosResponse = await fetch(url)
     .then((res) => res.json())
     .catch((err) => {
-      console.error("Error fetching trending", err);
+      console.error("Error fetching videos", err);
       return null;
     });
 
@@ -119,9 +120,24 @@ export const fetchTV = async (
   const tvResponse = await fetch(url)
     .then((res) => res.json())
     .catch((err) => {
-      console.error("Error fetching movies", err);
+      console.error("Error fetching tv", err);
       return null;
     });
 
   return tvResponse;
+};
+
+/**
+ * @see https://developer.themoviedb.org/reference/search-multi
+ */
+export const fetchSearchMulti = async (query: string, page: number = 1): Promise<SearchMultiResponse> => {
+  const url = `${TMDBBaseUrl}/search/multi?api_key=${TMDBApiKey}&query=${query}&page=${page}`;
+  const multiResponse = await fetch(url)
+    .then((res) => res.json())
+    .catch((err) => {
+      console.error("Error search multi", err);
+      return null;
+    });
+
+  return multiResponse;
 };

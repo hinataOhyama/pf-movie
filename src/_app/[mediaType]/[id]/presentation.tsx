@@ -20,7 +20,11 @@ import {
   ratingToPercentage,
   resolveRatingColor,
 } from "@/utils/helpers";
-import { CreditResponse, DetailResponse, VideoResponse } from "@/services/tmdb/schema";
+import {
+  CreditResponse,
+  DetailResponse,
+  VideoResponse,
+} from "@/services/tmdb/schema";
 import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 import { FaCalendar, FaTimes, FaCheckCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
@@ -109,7 +113,7 @@ const DetailsPresentation = ({
                   color={resolveRatingColor(detailsData?.vote_average)}
                   textDecorationThickness={"6px"}
                 >
-                  <CircleProgressLabel fontSize={"lg"}>
+                  <CircleProgressLabel fontSize={"lg"} bg={"transparent"}>
                     {ratingToPercentage(detailsData?.vote_average)}{" "}
                     <Box as="span" fontSize={"10px"}>
                       %
@@ -124,11 +128,18 @@ const DetailsPresentation = ({
                     startIcon={<FaCheckCircle />}
                     colorScheme="green"
                     variant={"outline"}
+                    color={"gray.400"}
+                    _hover={{ color: "black", bg: "white" }}
                   >
                     In watchlist
                   </Button>
                 ) : (
-                  <Button startIcon={<CgAdd />} variant={"outline"}>
+                  <Button
+                    startIcon={<CgAdd />}
+                    variant={"outline"}
+                    color={"gray.400"}
+                    _hover={{ color: "black", bg: "white" }}
+                  >
                     Add to watchlist
                   </Button>
                 )}

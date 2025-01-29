@@ -13,7 +13,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   return (
-    <Box as={"header"} py="4" mb="2" boxShadow={"md"}>
+    <Box as={"header"} py="4" boxShadow={"md"}>
       <Container maxW={"6xl"} mx={"auto"} py={"0"} px={"4"}>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Link href={"/"}>

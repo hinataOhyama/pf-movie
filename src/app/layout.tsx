@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import HomeProvider from "./provider";
 import Navbar from "@/components/navbar";
+import { ColorModeScript } from "@yamada-ui/react";
 
 export const metadata: Metadata = {
   title: "pf-movie",
@@ -14,8 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" suppressHydrationWarning data-mode="dark" style={{ colorScheme: "dark" }}>
+    <html
+      lang="ja"
+      suppressHydrationWarning
+    >
       <body suppressHydrationWarning>
+        <ColorModeScript initialColorMode={"dark"} />
         <HomeProvider>
           <Navbar />
           <main>{children}</main>
