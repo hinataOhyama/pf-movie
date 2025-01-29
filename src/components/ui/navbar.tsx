@@ -45,7 +45,7 @@ const Navbar = () => {
             <Box
               fontSize={"2xl"}
               fontWeight={"bold"}
-              color={"blue.400"}
+              color={"blue.500"}
               letterSpacing={"widest"}
               fontFamily={"mono"}
             >
@@ -69,21 +69,22 @@ const Navbar = () => {
               <Menu>
                 <MenuButton>
                   <Avatar
-                    bg={"red.500"}
-                    color={"white"}
+                    bg={"blue.500"}
+                    css={{ div: { background: "transparent" } }}
                     size={"sm"}
                     name={user?.email ?? ""}
                   />
                 </MenuButton>
                 <MenuList p="0">
                   <Link href="/watchlist">
-                    <MenuItem _hover={{ bg: "gray.800" }}>
+                    <MenuItem bg="gray.800" _hover={{ bg: "gray.700" }}>
                       Watchlist
                     </MenuItem>
                   </Link>
                   <MenuItem
                     onClick={logout}
-                    _hover={{ bg: "gray.800" }}
+                    bg="gray.800"
+                    _hover={{ bg: "gray.700" }}
                   >
                     Logout
                   </MenuItem>
