@@ -4,7 +4,8 @@
   "language": "en",
   "words": [
     "cspell",
-    "tmdb"
+    "tmdb",
+    "firestore"
   ],
   "ignorePaths": ["node_modules", "pnpm-lock.yaml", "dist"]
 }

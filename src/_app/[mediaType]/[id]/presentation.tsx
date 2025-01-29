@@ -12,6 +12,7 @@ import {
   Icon,
   Image,
   Text,
+  useNotice,
 } from "@yamada-ui/react";
 import { TMDBImagePath, TMDBImageOriginalPath } from "@/services/tmdb/const";
 
@@ -29,6 +30,11 @@ import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 import { FaCalendar, FaTimes, FaCheckCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
 import Video from "@/components/ui/video";
+import { useAuth } from "@/components/feature/auth/use-auth";
+import { AuthContext } from "@/components/feature/auth/provider";
+import { useFirestore } from "@/services/firestore/use-firestore";
+import { useEffect, useState } from "react";
+import { WatchList } from "@/services/firestore/schema";
 
 type DetailsPresentationProps = {
   detailsData: DetailResponse;
@@ -43,11 +49,65 @@ const DetailsPresentation = ({
   videosData,
   params,
 }: DetailsPresentationProps) => {
+  const { user } = useAuth() as AuthContext;
+  const { addToWatchList, checkIfInWatchList, removeFromWatchList } =
+    useFirestore();
+  const notice = useNotice();
+
   const title = detailsData?.title || detailsData?.name;
   const releaseDate =
     params?.mediaType === "tv"
       ? detailsData?.first_air_date
       : detailsData?.release_date;
+
+  const [isInWatchList, setIsInWatchList] = useState(false);
+
+  const handleSaveToWatchList = async () => {
+    if (!user) {
+      notice({
+        title: "Login to add to watchlist",
+        status: "error",
+        isClosable: true,
+      });
+      return;
+    }
+
+    const data: WatchList = {
+      id: detailsData?.id,
+      title: detailsData?.title || detailsData?.name,
+      type: params?.mediaType,
+      poster_path: detailsData?.poster_path,
+      release_date: detailsData?.release_date || detailsData?.first_air_date,
+      vote_average: detailsData?.vote_average,
+      overview: detailsData?.overview,
+    };
+
+    const dataId = detailsData?.id?.toString();
+    await addToWatchList(user?.uid, dataId, data);
+    const isSetToWatchList = await checkIfInWatchList(user?.uid, dataId);
+    setIsInWatchList(isSetToWatchList);
+  };
+
+  useEffect(() => {
+    if (!user) {
+      setIsInWatchList(false);
+      return;
+    }
+    console.log(user?.uid, params?.id);
+
+    checkIfInWatchList(user?.uid, params?.id.toString()).then((data) => {
+      setIsInWatchList(data);
+    });
+  }, [params?.id, user, checkIfInWatchList]);
+
+  const handleRemoveFromWatchList = async () => {
+    await removeFromWatchList(user?.uid, params?.id.toString());
+    const isSetToWatchList = await checkIfInWatchList(
+      user?.uid,
+      params?.id.toString()
+    );
+    setIsInWatchList(isSetToWatchList);
+  };
 
   return (
     <Box>
@@ -123,22 +183,24 @@ const DetailsPresentation = ({
                 <Text display={{ base: "initial", md: "none" }}>
                   User Score
                 </Text>
-                {false ? (
+                {isInWatchList ? (
                   <Button
                     startIcon={<FaCheckCircle />}
                     colorScheme="green"
                     variant={"outline"}
                     color={"gray.400"}
                     _hover={{ color: "black", bg: "white" }}
+                    onClick={handleRemoveFromWatchList}
                   >
                     In watchlist
                   </Button>
                 ) : (
                   <Button
-                    startIcon={<CgAdd />}
+                    startIcon={<CgAdd color="gray.400" />}
                     variant={"outline"}
                     color={"gray.400"}
                     _hover={{ color: "black", bg: "white" }}
+                    onClick={handleSaveToWatchList}
                   >
                     Add to watchlist
                   </Button>
