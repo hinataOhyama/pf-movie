@@ -52,7 +52,7 @@ const Card = ({ result }: CardProps) => {
               result?.release_date || result?.first_air_date
             ).getFullYear() || "N/A"}
           </Text>
-          <Flex alignItems={"center"} justifyContent={"center"} gap={2} mt="4">
+          <Flex alignItems={"center"} justifyContent={"center"} gap={2} mt="2">
             <Icon as={FaStar} fontSize={"small"} />
             <Text>{result?.vote_average?.toFixed(1)}</Text>
           </Flex>
