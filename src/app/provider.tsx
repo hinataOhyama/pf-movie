@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthProvider } from "@/context/auth-provider";
+import { AuthProvider } from "@/components/feature/auth/provider";
 import { config, theme } from "@/themes";
 import { UIProvider } from "@yamada-ui/react";
 
