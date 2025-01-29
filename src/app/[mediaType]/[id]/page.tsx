@@ -2,10 +2,10 @@ import DetailsContainer from "@/_app/[mediaType]/[id]/container";
 import { MediaType } from "@/services/tmdb/schema";
 
 export type DetailsPageParams = {
-  params: {
+  params: Promise<{
     mediaType: MediaType;
     id: number;
-  };
+  }>;
 };
 
 const DetailsPage = async ({ params }: DetailsPageParams) => {

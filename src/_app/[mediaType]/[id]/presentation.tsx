@@ -40,7 +40,7 @@ type DetailsPresentationProps = {
   detailsData: DetailResponse;
   creditsData: CreditResponse;
   videosData: VideoResponse;
-  params: DetailsPageParams["params"];
+  params: Awaited<DetailsPageParams["params"]>;
 };
 
 const DetailsPresentation = ({
