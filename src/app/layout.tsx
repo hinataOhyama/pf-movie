@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import HomeProvider from "./provider";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/ui/navbar";
 import { ColorModeScript } from "@yamada-ui/react";
 
 export const metadata: Metadata = {

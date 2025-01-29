@@ -1,7 +1,7 @@
 "use client";
 
-import Card from "@/components/card";
-import Pagination from "@/components/pagination";
+import Card from "@/components/ui/card";
+import Pagination from "@/components/ui/pagination";
 import { fetchMovies } from "@/services/tmdb/api";
 import {
   MovieDiscoverResponse,
@@ -86,7 +86,7 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
                   name: "",
                   first_air_date: "",
                   origin_country: [],
-                  original_name: ""
+                  original_name: "",
                 }}
               />
             )

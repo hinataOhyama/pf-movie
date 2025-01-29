@@ -1,7 +1,7 @@
 "use client";
 
-import Card from "@/components/card";
-import Pagination from "@/components/pagination";
+import Card from "@/components/ui/card";
+import Pagination from "@/components/ui/pagination";
 import { fetchTV } from "@/services/tmdb/api";
 import {
   SortBy,

@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/card";
+import Card from "@/components/ui/card";
 import { fetchTrending } from "@/services/tmdb/api";
 import {
   TimeWindow,

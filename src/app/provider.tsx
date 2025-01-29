@@ -1,5 +1,6 @@
 "use client";
 
+import { AuthProvider } from "@/context/auth-provider";
 import { config, theme } from "@/themes";
 import { UIProvider } from "@yamada-ui/react";
 
@@ -11,7 +12,7 @@ const HomeProvider = ({ children }: HomeProviderProps) => {
   return (
     <>
       <UIProvider theme={theme} config={config}>
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </UIProvider>
     </>
   );

@@ -28,7 +28,7 @@ import {
 import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 import { FaCalendar, FaTimes, FaCheckCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
-import Video from "@/components/video";
+import Video from "@/components/ui/video";
 
 type DetailsPresentationProps = {
   detailsData: DetailResponse;
