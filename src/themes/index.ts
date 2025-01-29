@@ -4,8 +4,11 @@ import {
   ThemeConfig,
   UsageTheme,
 } from "@yamada-ui/react";
+import { components } from "./components";
 
-const customTheme: UsageTheme = {};
+const customTheme: UsageTheme = {
+  components,
+};
 
 const customConfig: ThemeConfig = { initialColorMode: "dark" };
 

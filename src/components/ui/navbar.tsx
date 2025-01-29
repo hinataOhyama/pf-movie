@@ -1,7 +1,7 @@
 "use client";
 
-import { AuthContext } from "@/context/auth-provider";
-import { useAuth } from "@/context/use-auth";
+import { AuthContext } from "@/components/feature/auth/provider";
+import { useAuth } from "@/components/feature/auth/use-auth";
 import {
   Avatar,
   Box,
@@ -45,7 +45,7 @@ const Navbar = () => {
             <Box
               fontSize={"2xl"}
               fontWeight={"bold"}
-              color={"blue.400"}
+              color={"blue.500"}
               letterSpacing={"widest"}
               fontFamily={"mono"}
             >
@@ -69,21 +69,22 @@ const Navbar = () => {
               <Menu>
                 <MenuButton>
                   <Avatar
-                    bg={"red.500"}
-                    color={"white"}
+                    bg={"blue.500"}
+                    css={{ div: { background: "transparent" } }}
                     size={"sm"}
                     name={user?.email ?? ""}
                   />
                 </MenuButton>
                 <MenuList p="0">
-                  <Link href="/watchlist">
-                    <MenuItem _hover={{ bg: "gray.800" }}>
-                      Watchlist
+                  <Link href="/watch-list">
+                    <MenuItem bg="gray.800" _hover={{ bg: "gray.700" }}>
+                      WatchList
                     </MenuItem>
                   </Link>
                   <MenuItem
                     onClick={logout}
-                    _hover={{ bg: "gray.800" }}
+                    bg="gray.800"
+                    _hover={{ bg: "gray.700" }}
                   >
                     Logout
                   </MenuItem>
@@ -133,10 +134,10 @@ const Navbar = () => {
                 <Flex flexDirection={"column"} gap={"4"} onClick={onClose}>
                   <Link href="/">Home</Link>
                   <Link href="/movies">Movies</Link>
-                  <Link href="/shows">TV Shows</Link>
+                  <Link href="/tv">TV</Link>
                   {user && (
                     <>
-                      <Link href="/watchlist">Watchlist</Link>
+                      <Link href="/watch-list">WatchList</Link>
                       <Button
                         variant={"outline"}
                         colorScheme="red"
