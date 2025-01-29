@@ -1,7 +1,7 @@
 "use client";
 
-import Card from "@/components/card";
-import Pagination from "@/components/pagination";
+import Card from "@/components/ui/card";
+import Pagination from "@/components/ui/pagination";
 import { fetchSearchMulti } from "@/services/tmdb/api";
 import { SearchMultiResponse } from "@/services/tmdb/schema";
 import {
@@ -23,7 +23,7 @@ const SearchPresentation = () => {
     total_pages: 1,
     total_results: 0,
   };
-  
+
   const [searchValue, setSearchValue] = useState("");
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -79,7 +79,8 @@ const SearchPresentation = () => {
         gap={"4"}
         mt="6"
       >
-        {searchData && searchData.results.length > 0 &&
+        {searchData &&
+          searchData.results.length > 0 &&
           !isPending &&
           searchData.results.map((result, i) =>
             isPending ? (
@@ -92,7 +93,7 @@ const SearchPresentation = () => {
                   first_air_date: "",
                   name: result.title || "",
                   origin_country: [],
-                  original_name: result.original_title || ""
+                  original_name: result.original_title || "",
                 }}
               />
             )
