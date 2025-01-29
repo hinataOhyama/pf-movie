@@ -3,7 +3,9 @@ import { fetchCredits, fetchDetails, fetchVideos } from "@/services/tmdb/api";
 import DetailsPresentation from "./presentation";
 import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 
-type DetailsContainerProps = DetailsPageParams;
+type DetailsContainerProps = {
+  params: Awaited<Promise<DetailsPageParams["params"]>>;
+};
 
 const DetailsContainer = async ({ params }: DetailsContainerProps) => {
   const [detailsData, creditsData, videosData] = await Promise.all([
