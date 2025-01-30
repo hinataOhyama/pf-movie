@@ -12,12 +12,12 @@ export const Select: ComponentStyle = {
     },
     item: {
       _active: {
-        bg: ["blackAlpha.700", "whiteAlpha.200"],
+        bg: ["blackAlpha.700", "blackAlpha.700"],
       },
       _hover: {
-        bg: ["blackAlpha.700", "whiteAlpha.100"],
+        bg: ["blackAlpha.700", "blackAlpha.700"],
         _focus: {
-          bg: ["blackAlpha.700", "whiteAlpha.50"],
+          bg: ["blackAlpha.700", "blackAlpha.700"],
         },
       },
     },
