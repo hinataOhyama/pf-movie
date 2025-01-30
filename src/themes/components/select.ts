@@ -3,7 +3,7 @@ import { ComponentStyle } from "@yamada-ui/react";
 export const Select: ComponentStyle = {
   baseStyle: {
     content: {
-      bg: ["black", "white"],
+      bg: ["black", "black"],
       borderColor: ["white", "whiteAlpha.100"],
     },
     list: {
