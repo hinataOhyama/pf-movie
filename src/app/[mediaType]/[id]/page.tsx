@@ -8,10 +8,11 @@ export type DetailsPageParams = {
   }>;
 };
 
-const DetailsPage = async ({ params }: DetailsPageParams) => {
-  const fetchParams = await params;
+const DetailsPage = async (props: DetailsPageParams) => {
+  const pageParams = await props.params;
+  const params = await pageParams;
 
-  return <DetailsContainer params={fetchParams} />;
+  return <DetailsContainer params={params} />;
 };
 
 export default DetailsPage;

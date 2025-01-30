@@ -4,7 +4,7 @@ import DetailsPresentation from "./presentation";
 import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 
 type DetailsContainerProps = {
-  params: Awaited<Promise<DetailsPageParams["params"]>>;
+  params: Awaited<DetailsPageParams["params"]>;
 };
 
 const DetailsContainer = async ({ params }: DetailsContainerProps) => {
