@@ -11,41 +11,35 @@
 **ポートフォリオ概要:**  
 このアプリは、動画配信プラットフォームアプリです。`React`と`TypeScript`を使用して構築されており、`Firebase`をバックエンドとして利用しています。ユーザー認証やデータ管理機能を備え、レスポンシブなデザインで様々なデバイスに対応しています。
 
-**URL:** [ポートフォリオサイトへのリンクを記載]
+**URL:** https://pf-movie-rdtvvjvyr-hinataohyamas-projects.vercel.app/
 
 # 2. 開発技術
 
 **使用技術:**  
-- HTML
-- CSS
-- React
-- TypeScript
+- `HTML`
+- `CSS`
+- `TypeScript`
 
 **ライブラリ/フレームワーク:**  
-- Firebase
-- Yamada UI
-- Next.js
+- `React`
+- `Next.js`
+- `Yamada UI`
+- `Firebase`
 
 **ツール:**  
-- Git
-- Visual Studio Code
-- Vercel
-- TMDB API
+- `Git`
+- `VSCode`
+- `Vercel`
+- `TMDB API`
 
 # 3. ポートフォリオ詳細
 
 **概要:**  
-TMDB API を利用して動画情報を取得し、詳細情報やクレジット、ビデオを表示するアプリケーションを作成しました。
-
-**使用技術:**  
-React, Next.js, TypeScript, Firebase, TMDB API, Yamada UI
+`TMDB API`を利用して動画情報を取得し、詳細情報やクレジット、ビデオを表示するアプリケーションを作成しました。
 
 **開発期間:**  
 2025年1月23日 ～ 2025年1月30日
 
 **工夫した点:**  
-- Next.js v15, React v19を使って新機能のキャッチアップも兼ねた。
-- 有名なコンポーネントライブラリ(MUI, Chakra UI etc...)ではなく、あまり浸透していないライブラリ(Yamada UI)を使用することで、自走力アピールの一助になると判断した。
-
-**URL:**  
-https://pf-movie-rdtvvjvyr-hinataohyamas-projects.vercel.app/
+- `Next.js v15`, `React v19`を使って新機能のキャッチアップも兼ねた。
+- 有名なコンポーネントライブラリ(`MUI`, `Chakra UI` etc...)ではなく、あまり浸透していないライブラリ(`Yamada UI`)を使用することで、自走力アピールの一助になると判断した。
