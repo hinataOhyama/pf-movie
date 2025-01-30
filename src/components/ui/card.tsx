@@ -41,20 +41,33 @@ const Card = ({ result }: CardProps) => {
           bottom={"0"}
           left={"0"}
           w={"full"}
-          h={"33%"}
+          h={"fit-content"}
           bg="rgba(0,0,0,0.9)"
           opacity={"0"}
           transition={"opacity 0.3s ease-in-out"}
         >
-          <Text textAlign={"center"}>{result?.title || result?.name}</Text>
-          <Text textAlign={"center"} fontSize={"small"} color={"green.300"}>
+          <Text textAlign={"center"} bg={"transparent"}>
+            {result?.title || result?.name}
+          </Text>
+          <Text
+            textAlign={"center"}
+            fontSize={"small"}
+            color={"green.300"}
+            bg={"transparent"}
+          >
             {new Date(
               result?.release_date || result?.first_air_date
             ).getFullYear() || "N/A"}
           </Text>
-          <Flex alignItems={"center"} justifyContent={"center"} gap={2} mt="2">
+          <Flex
+            alignItems={"center"}
+            justifyContent={"center"}
+            gap={2}
+            mt="2"
+            bg={"transparent"}
+          >
             <Icon as={FaStar} fontSize={"small"} />
-            <Text>{result?.vote_average?.toFixed(1)}</Text>
+            <Text bg={"transparent"}>{result?.vote_average?.toFixed(1)}</Text>
           </Flex>
         </Box>
       </Box>

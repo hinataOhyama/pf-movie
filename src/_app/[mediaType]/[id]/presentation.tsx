@@ -29,7 +29,7 @@ import {
 import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 import { FaCalendar, FaTimes, FaCheckCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
-import Video from "@/components/ui/video";
+import Video from "@/_app/[mediaType]/[id]/components/video";
 import { useAuth } from "@/components/feature/auth/use-auth";
 import { AuthContext } from "@/components/feature/auth/provider";
 import { useFirestore } from "@/services/firestore/use-firestore";
@@ -185,18 +185,18 @@ const DetailsPresentation = ({
                 </Text>
                 {isInWatchList ? (
                   <Button
-                    startIcon={<FaCheckCircle />}
+                    startIcon={<FaCheckCircle color="green.500" />}
                     colorScheme="green"
                     variant={"outline"}
-                    color={"gray.400"}
-                    _hover={{ color: "black", bg: "white" }}
+                    color={"green.500"}
+                    _hover={{ color: "white", bg: "green.500" }}
                     onClick={handleRemoveFromWatchList}
                   >
                     In watchlist
                   </Button>
                 ) : (
                   <Button
-                    startIcon={<CgAdd color="gray.400" />}
+                    startIcon={<CgAdd color="currentColor" />}
                     variant={"outline"}
                     color={"gray.400"}
                     _hover={{ color: "black", bg: "white" }}

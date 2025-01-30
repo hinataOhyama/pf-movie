@@ -1,7 +1,6 @@
 "use client";
 
 import Card from "@/components/ui/card";
-import Pagination from "@/components/ui/pagination";
 import { fetchSearchMulti } from "@/services/tmdb/api";
 import { SearchMultiResponse } from "@/services/tmdb/schema";
 import {
@@ -11,9 +10,10 @@ import {
   Heading,
   Input,
   Loading,
+  Pagination,
   Skeleton,
 } from "@yamada-ui/react";
-import { useActionState, useState } from "react";
+import { startTransition, useActionState, useState } from "react";
 import Form from "next/form";
 
 const SearchPresentation = () => {
@@ -102,10 +102,14 @@ const SearchPresentation = () => {
 
       {searchData && searchData.results.length > 0 && !isPending && (
         <Pagination
-          activePage={activePage}
-          totalPages={totalPages}
-          setActivePage={setActivePage}
-          _setData={setSearchData}
+          total={totalPages}
+          page={activePage}
+          onChange={(page) => {
+            setActivePage(page);
+            startTransition(() => setSearchData());
+          }}
+          display={"flex"}
+          justifyContent={"center"}
         />
       )}
     </Container>

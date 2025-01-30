@@ -29,7 +29,7 @@ const WatchListPresentation = () => {
   }, [auth?.user?.uid, getWatchList]);
 
   return (
-    <Container maxW={"6xl"} py={"12"} px={"4"} mx={"auto"}>
+    <Container maxW={"6xl"} pt={"0"} pb={"12"} px={"4"} mx={"auto"}>
       <Flex alignItems={"baseline"} gap={"4"} my={"10"}>
         <Heading as="h2" fontSize={"md"} textTransform={"uppercase"}>
           WatchList
