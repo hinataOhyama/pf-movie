@@ -29,7 +29,7 @@ import {
 import { DetailsPageParams } from "@/app/[mediaType]/[id]/page";
 import { FaCalendar, FaTimes, FaCheckCircle } from "react-icons/fa";
 import { CgAdd } from "react-icons/cg";
-import Video from "@/components/ui/video";
+import Video from "@/_app/[mediaType]/[id]/components/video";
 import { useAuth } from "@/components/feature/auth/use-auth";
 import { AuthContext } from "@/components/feature/auth/provider";
 import { useFirestore } from "@/services/firestore/use-firestore";

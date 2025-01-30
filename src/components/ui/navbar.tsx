@@ -19,9 +19,11 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Text,
   useDisclosure,
 } from "@yamada-ui/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaSearch } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 
@@ -32,6 +34,7 @@ const Navbar = () => {
     onOpen,
     // onClose
   } = useDisclosure();
+  const pathname = usePathname();
 
   const handleGoogleLogin = async () => {
     try {
@@ -43,8 +46,8 @@ const Navbar = () => {
   };
 
   return (
-    <Box as={"header"} py="4" boxShadow={"md"}>
-      <Container maxW={"6xl"} mx={"auto"} py={"12"} px={"4"}>
+    <Box as={"header"} py="4" boxShadow={"inset 0 -1px 0 0 #333"}>
+      <Container maxW={"6xl"} mx={"auto"} p={0} py={"0"} px={"4"}>
         <Flex justifyContent={"space-between"} alignItems={"center"}>
           <Link href={"/"}>
             <Box
@@ -64,9 +67,36 @@ const Navbar = () => {
             alignItems={"center"}
             display={{ base: "flex", md: "none" }}
           >
-            <Link href="/">Home</Link>
-            <Link href="/movies">Movies</Link>
-            <Link href="/tv">TV</Link>
+            <Link href="/">
+              <Text
+                color={`${pathname === "/" ? "blue.500" : "gray.400"}`}
+                _hover={{
+                  color: pathname === "/" ? "blue.500" : "white",
+                }}
+              >
+                Home
+              </Text>
+            </Link>
+            <Link href="/movies">
+              <Text
+                color={`${pathname === "/movies" ? "blue.500" : "gray.400"}`}
+                _hover={{
+                  color: pathname === "/movies" ? "blue.500" : "white",
+                }}
+              >
+                Movies
+              </Text>
+            </Link>
+            <Link href="/tv">
+              <Text
+                color={`${pathname === "/tv" ? "blue.500" : "gray.400"}`}
+                _hover={{
+                  color: pathname === "/tv" ? "blue.500" : "white",
+                }}
+              >
+                TV
+              </Text>
+            </Link>
             <Link href="/search">
               <Icon as={FaSearch} fontSize={"xl"} />
             </Link>
@@ -115,7 +145,12 @@ const Navbar = () => {
             <Link href="/search">
               <Icon as={FaSearch} fontSize={"xl"} />
             </Link>
-            <IconButton onClick={onOpen} icon={<GiHamburgerMenu />} />
+            <IconButton
+              onClick={onOpen}
+              icon={<GiHamburgerMenu />}
+              bg={"black"}
+              _hover={{ bg: "black" }}
+            />
             {/* TODO: Bug fix */}
             {/* <Drawer open={open} onClose={onClose}>
               <DrawerHeader>
