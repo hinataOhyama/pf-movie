@@ -32,9 +32,9 @@ const HomePresentation = ({ trendingData }: HomePresentationProps) => {
   const _results: TrendingResults = _trendingData?.results;
 
   return (
-    <Container maxW={"6xl"} mx={"auto"} pb={"16"} px={"4"}>
+    <Container maxW={"6xl"} mx={"auto"} pt={"0"} pb={"16"} px={"4"}>
       <Flex alignItems={"baseline"} gap={"4"} my={"10"}>
-        <Heading as={"h2"} fontSize={"md"}>
+        <Heading as={"h2"} fontSize={"lg"} textTransform={"uppercase"}>
           Trending
         </Heading>
         <Flex

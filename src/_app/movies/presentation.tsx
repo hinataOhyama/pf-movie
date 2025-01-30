@@ -1,7 +1,6 @@
 "use client";
 
 import Card from "@/components/ui/card";
-import Pagination from "@/components/ui/pagination";
 import { fetchMovies } from "@/services/tmdb/api";
 import {
   MovieDiscoverResponse,
@@ -14,8 +13,10 @@ import {
   Grid,
   Heading,
   Option,
+  Pagination,
   Select,
   Skeleton,
+  Text,
 } from "@yamada-ui/react";
 import { startTransition, useActionState, useState } from "react";
 
@@ -45,7 +46,7 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
   return (
     <Container maxW={"6xl"} mx={"auto"} py={"0"} px={"4"}>
       <Flex alignItems={"baseline"} gap={"4"} my="10">
-        <Heading as="h2" fontSize={"md"} textTransform={"uppercase"}>
+        <Heading as="h2" fontSize={"lg"} textTransform={"uppercase"}>
           Discover Movies
         </Heading>
 
@@ -57,10 +58,15 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
             setSortBy(value as SortBy);
             startTransition(() => _setMoviesData());
           }}
+          iconProps={{ color: "white" }}
+          _hover={{ borderColor: "whiteAlpha.950" }}
+          optionProps={{ bg: "black", _active: { bg: "black" } }}
         >
-          <Option value="popularity.desc">Popular</Option>
+          <Option value="popularity.desc" bg="black">
+            <Text>Popular</Text>
+          </Option>
           <Option value="vote_average.desc&vote_count.gte=1000">
-            Top Rated
+            <Text>Top Rated</Text>
           </Option>
         </Select>
       </Flex>
@@ -94,10 +100,14 @@ const MoviesPresentation = ({ moviesData }: MoviesPresentationProps) => {
       </Grid>
 
       <Pagination
-        activePage={activePage}
-        totalPages={totalPages}
-        setActivePage={setActivePage}
-        _setData={_setMoviesData}
+        total={totalPages}
+        page={activePage}
+        onChange={(page) => {
+          setActivePage(page);
+          startTransition(() => _setMoviesData());
+        }}
+        display={"flex"}
+        justifyContent={"center"}
       />
     </Container>
   );

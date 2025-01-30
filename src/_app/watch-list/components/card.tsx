@@ -55,7 +55,7 @@ const WatchListCard = ({ item, type, setWatchList }: WatchListCardProps) => {
             size={"sm"}
             colorScheme="green"
             position={"absolute"}
-            zIndex={"999"}
+            zIndex={"99"}
             top="2px"
             left={"2px"}
             onClick={handleRemoveClick}

@@ -1,14 +1,16 @@
 import { ComponentStyle } from "@yamada-ui/react";
 
-export const Menu: ComponentStyle = {
+export const Select: ComponentStyle = {
   baseStyle: {
     content: {
       bg: ["black", "white"],
       borderColor: ["white", "whiteAlpha.100"],
     },
-    item: {
+    list: {
       borderColor: ["white", "whiteAlpha.100"],
       borderRadius: "md",
+    },
+    item: {
       _active: {
         bg: ["blackAlpha.700", "whiteAlpha.200"],
       },

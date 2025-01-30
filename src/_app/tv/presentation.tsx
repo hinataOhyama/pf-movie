@@ -1,7 +1,6 @@
 "use client";
 
 import Card from "@/components/ui/card";
-import Pagination from "@/components/ui/pagination";
 import { fetchTV } from "@/services/tmdb/api";
 import {
   SortBy,
@@ -14,6 +13,7 @@ import {
   Grid,
   Heading,
   Option,
+  Pagination,
   Select,
   Skeleton,
 } from "@yamada-ui/react";
@@ -45,8 +45,8 @@ const TVPresentation = ({ tvData }: TVPresentationProps) => {
   return (
     <Container maxW={"6xl"} mx={"auto"} py={"0"} px={"4"}>
       <Flex alignItems={"baseline"} gap={"4"} my="10">
-        <Heading as="h2" fontSize={"md"} textTransform={"uppercase"}>
-          Discover Movies
+        <Heading as="h2" fontSize={"lg"} textTransform={"uppercase"}>
+          Discover TV
         </Heading>
 
         <Select
@@ -95,10 +95,14 @@ const TVPresentation = ({ tvData }: TVPresentationProps) => {
       </Grid>
 
       <Pagination
-        activePage={activePage}
-        totalPages={totalPages}
-        setActivePage={setActivePage}
-        _setData={_setTVData}
+        total={totalPages}
+        page={activePage}
+        onChange={(page) => {
+          setActivePage(page);
+          startTransition(() => _setTVData());
+        }}
+        display={"flex"}
+        justifyContent={"center"}
       />
     </Container>
   );
