@@ -4,10 +4,10 @@ export const Select: ComponentStyle = {
   baseStyle: {
     content: {
       bg: ["black", "black"],
-      borderColor: ["white", "whiteAlpha.100"],
+      borderColor: ["white", "white"],
     },
     list: {
-      borderColor: ["white", "whiteAlpha.100"],
+      borderColor: ["white", "white"],
       borderRadius: "md",
     },
     item: {

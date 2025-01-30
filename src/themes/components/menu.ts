@@ -3,19 +3,19 @@ import { ComponentStyle } from "@yamada-ui/react";
 export const Menu: ComponentStyle = {
   baseStyle: {
     content: {
-      bg: ["black", "white"],
-      borderColor: ["white", "whiteAlpha.100"],
+      bg: ["black", "black"],
+      borderColor: ["white", "white"],
     },
     item: {
-      borderColor: ["white", "whiteAlpha.100"],
+      borderColor: ["white", "white"],
       borderRadius: "md",
       _active: {
-        bg: ["blackAlpha.700", "whiteAlpha.200"],
+        bg: ["blackAlpha.700", "blackAlpha.700"],
       },
       _hover: {
-        bg: ["blackAlpha.700", "whiteAlpha.100"],
+        bg: ["blackAlpha.700", "blackAlpha.700"],
         _focus: {
-          bg: ["blackAlpha.700", "whiteAlpha.50"],
+          bg: ["blackAlpha.700", "blackAlpha.700"],
         },
       },
     },
