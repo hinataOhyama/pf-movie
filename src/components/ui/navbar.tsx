@@ -50,7 +50,7 @@ const Navbar = () => {
               fontWeight={"bold"}
               color={"blue.500"}
               letterSpacing={"widest"}
-              fontFamily={"mono"}
+              fontFamily={"monospace"}
             >
               PF-Movie
             </Box>
@@ -58,7 +58,7 @@ const Navbar = () => {
 
           {/* DESKTOP */}
           <Flex
-            gap="4"
+            gap="6"
             alignItems={"center"}
             display={{ base: "flex", md: "none" }}
           >
