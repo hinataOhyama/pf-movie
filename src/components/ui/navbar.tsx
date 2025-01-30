@@ -5,12 +5,13 @@ import { useAuth } from "@/components/feature/auth/use-auth";
 import {
   Avatar,
   Box,
-  Button,
   Container,
-  Drawer,
-  DrawerBody,
-  DrawerFooter,
-  DrawerHeader,
+  // Button,
+  // Drawer,
+  // DrawerBody,
+  // DrawerFooter,
+  // DrawerHeader,
+  // DrawerProps,
   Flex,
   Icon,
   IconButton,
@@ -26,7 +27,11 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = () => {
   const { user, signInWithGoogle, logout } = useAuth() as AuthContext;
-  const { open, onOpen, onClose } = useDisclosure();
+  const {
+    // open,
+    onOpen,
+    // onClose
+  } = useDisclosure();
 
   const handleGoogleLogin = async () => {
     try {
@@ -111,7 +116,8 @@ const Navbar = () => {
               <Icon as={FaSearch} fontSize={"xl"} />
             </Link>
             <IconButton onClick={onOpen} icon={<GiHamburgerMenu />} />
-            <Drawer open={open} onClose={onClose}>
+            {/* TODO: Bug fix */}
+            {/* <Drawer open={open} onClose={onClose}>
               <DrawerHeader>
                 {user ? (
                   <Flex alignItems="center" gap="2">
@@ -150,7 +156,7 @@ const Navbar = () => {
                 </Flex>
               </DrawerBody>
               <DrawerFooter></DrawerFooter>
-            </Drawer>
+            </Drawer> */}
           </Flex>
         </Flex>
       </Container>
